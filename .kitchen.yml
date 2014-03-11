@@ -8,9 +8,9 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
     driver:
-      synced_folders: [["/netcalc/src", "/netcalc/src"]]
+      # synced_folders: [["/netcalc/src", "/netcalc/src"]]
       network:
-      - ["forwarded_port", {guest: 8888, host: 8888}]
+      # - ["forwarded_port", {guest: 8888, host: 8888}]
 
 suites:
   - name: default
