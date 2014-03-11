@@ -8,3 +8,6 @@ version          '0.1.0'
 
 depends "apt", "~> 2.3.8"
 depends "haproxy", "~> 1.6.2"
+depends 'python'
+depends 'ark'
+depends 'serf'
