@@ -8,9 +8,13 @@
 #
 
 
-node.default["serf"]["version"] = '0.4.5'
-node.default["serf"]["agent"]["tags"]["apps"] = 'netcalc'
-node.default["serf"]["agent"]["tags"]["netcalc"] = node[:netcalc][:version]
+node.default["serf"]["version"] = "0.4.5"
+node.default["serf"]["agent"]["tags"]["apps"] = "netcalc"
+node.default["serf"]["agent"]["tags"]["netcalc"] = node[:netcalc][:version] + ",running"
+node.default["serf"]["agent"]["event_handlers"] = ["/opt/serf/event_handlers/event-publish.sh"]
+node.default["serf"]["agent"]["node_name"] = "netcalc01.us.blah"
+node.default["serf"]["agent"]["interface"] = "eth1"
+node.default["serf"]["agent"]["discover"] = "deploy"
 
 include_recipe "apt"
 include_recipe "python"
@@ -40,8 +44,19 @@ template "/etc/init/netcalc.conf" do
   group "root"
 end
 
+template "/opt/serf/event_handlers/event-publish.sh" do
+  source "event-publish.sh.erb"
+  mode 0755
+  owner "serf"
+  group "serf"
+end
+
 node[:netcalc][:python][:packages].each do |package|
   package "python-" + package
+end
+
+package "curl" do
+  action :install
 end
 
 node[:netcalc][:python][:pip_packages].each do |pip|
