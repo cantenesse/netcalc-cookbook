@@ -1,2 +1,6 @@
+import os
+
 def execute(payload):
-    os.system('sudo service netcalc start')
+    os.system('sudo su -c "service netcalc stop"')
+
+    return True

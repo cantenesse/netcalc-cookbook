@@ -1,2 +1,6 @@
+import os
+
 def execute(payload):
-    os.system('export APP_USER=serf; service netcalc start')
+    os.system('sudo su -c "service netcalc start"')
+
+    return True

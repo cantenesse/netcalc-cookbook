@@ -8,6 +8,7 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
     driver:
+      synced_folders: [["/Users/chris.antenesse/repos/cookbooks/helot-cookbook/files/default", "/src"]]
       network:
       - ["private_network", {ip: "10.10.10.2"}]
 
