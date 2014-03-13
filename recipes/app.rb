@@ -34,13 +34,6 @@ template "/etc/init/netcalc.conf" do
   group "root"
 end
 
-template "/opt/serf/event_handlers/event-publish.sh" do
-  source "event-publish.sh.erb"
-  mode 0755
-  owner "serf"
-  group "serf"
-end
-
 node[:netcalc][:python][:packages].each do |package|
   package "python-" + package
 end
