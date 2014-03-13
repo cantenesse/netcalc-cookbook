@@ -75,8 +75,3 @@ file "/home/tornado/netcalc/app/netcalc_listener.py" do
   mode 00777
 end
 
-service "netcalc" do
-  provider Chef::Provider::Service::Upstart
-  supports :restart => true, :status => true
-  action [:enable, :start]
-end

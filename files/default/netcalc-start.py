@@ -1,2 +1,2 @@
 def execute(payload):
-    os.system('sudo service netcalc start')
+    os.system('export APP_USER=serf; service netcalc start')

@@ -10,7 +10,7 @@
 
 node.default["helot"]["client"]["app"]["name"] = "netcalc"
 node.default["helot"]["client"]["app"]["version"] = node[:netcalc][:version]
-node.default["helot"]["client"]["tags"] = node[:netcalc][:version] + ",running"
+node.default["helot"]["client"]["tags"] = node[:netcalc][:version] + ",stopped"
 node.default["helot"]["client"]["node_name"] = "netcalc01.us.blah"
 
 include_recipe "helot::client"
