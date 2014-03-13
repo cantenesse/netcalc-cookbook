@@ -7,18 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
-node.default["serf"]["version"] = "0.4.5"
-node.default["serf"]["agent"]["tags"]["apps"] = "netcalc"
-node.default["serf"]["agent"]["tags"]["netcalc"] = node[:netcalc][:version] + ",running"
-node.default["serf"]["agent"]["event_handlers"] = ["/opt/serf/event_handlers/event-publish.sh"]
-node.default["serf"]["agent"]["node_name"] = "netcalc01.us.blah"
-node.default["serf"]["agent"]["interface"] = "eth1"
-node.default["serf"]["agent"]["discover"] = "deploy"
-
 include_recipe "apt"
 include_recipe "python"
-include_recipe "serf"
 
 group "tornado" do
   group_name "tornado"

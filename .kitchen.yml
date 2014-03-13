@@ -8,7 +8,6 @@ provisioner:
 platforms:
   - name: ubuntu-12.04
     driver:
-      # synced_folders: [["/netcalc/src", "/netcalc/src"]]
       network:
       - ["private_network", {ip: "10.10.10.2"}]
 
@@ -17,3 +16,4 @@ suites:
     run_list:
       - recipe[netcalc::default]
     attributes:
+
