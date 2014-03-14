@@ -28,3 +28,17 @@ cookbook_file "/opt/serf/event_handlers/plugins/netcalc-stop.py" do
   owner "serf"
   group "serf"
 end
+
+cookbook_file "/opt/serf/event_handlers/plugins/netcalc-restart.py" do
+  source "netcalc-restart.py"
+  mode 0755
+  owner "serf"
+  group "serf"
+end
+
+cookbook_file "/opt/serf/event_handlers/plugins/netcalc-deploy.py" do
+  source "netcalc-deploy.py"
+  mode 0755
+  owner "serf"
+  group "serf"
+end
