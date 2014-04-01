@@ -11,4 +11,3 @@ depends "haproxy", "~> 1.6.2"
 depends 'python'
 depends 'ark'
 depends 'serf'
-depends 'helot'
