@@ -8,18 +8,12 @@
 #
 
 
-node.default["helot"]["client"]["app"]["name"] = "netcalc"
-node.default["helot"]["client"]["app"]["version"] = node[:netcalc][:version]
-node.default["helot"]["client"]["tags"] = node[:netcalc][:version] + ",stopped"
 node.default["helot"]["client"]["node_name"] = "netcalc01.us.blah"
 
-include_recipe "helot::client"
+node.default["serf"]["agent"]["tags"]["apps"] = "netcalc"
+node.default["serf"]["agent"]["tags"]["netcalc"] = node[:netcalc][:version] + ",stopped"
 
-directory "/opt/serf/event_handlers/plugins" do
-  action :create
-  owner "serf"
-  group "serf"
-end
+include_recipe "helot::serf"
 
 cookbook_file "/opt/serf/event_handlers/plugins/netcalc-start.py" do
   source "netcalc-start.py"
@@ -30,6 +24,20 @@ end
 
 cookbook_file "/opt/serf/event_handlers/plugins/netcalc-stop.py" do
   source "netcalc-stop.py"
+  mode 0755
+  owner "serf"
+  group "serf"
+end
+
+cookbook_file "/opt/serf/event_handlers/plugins/netcalc-restart.py" do
+  source "netcalc-restart.py"
+  mode 0755
+  owner "serf"
+  group "serf"
+end
+
+cookbook_file "/opt/serf/event_handlers/plugins/netcalc-deploy.py" do
+  source "netcalc-deploy.py"
   mode 0755
   owner "serf"
   group "serf"

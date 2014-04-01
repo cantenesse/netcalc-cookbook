@@ -65,13 +65,14 @@ bash 'extract_app' do
   cwd "/home/tornado/netcalc/app/"
   code <<-EOH
     unzip #{Chef::Config[:file_cache_path]}/netcalc-#{node[:netcalc][:version]}.zip
-    mv -fv netcalc-#{node[:netcalc][:version]}/* .
-    rm -rfv netcalc-#{node[:netcalc][:version]}/
-    EOH
-  not_if { ::File.exists?('/home/tornado/netcalc/app/netcalc_listener.py') }
+  EOH
+  not_if { ::File.exists?('/home/tornado/netcalc/app/netcalc-#{node[:netcalc][:version]}/netcalc_listener.py') }
 end
 
-file "/home/tornado/netcalc/app/netcalc_listener.py" do
+link "/home/tornado/netcalc/app/current/" do
+  to "/home/tornado/netcalc/app/netcalc-#{node[:netcalc][:version]}/"
+end
+
+file "/home/tornado/netcalc/app/current/netcalc_listener.py" do
   mode 00777
 end
-
