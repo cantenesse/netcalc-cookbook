@@ -9,4 +9,3 @@
 
 include_recipe "netcalc::lb"
 include_recipe "netcalc::app"
-include_recipe "netcalc::manager"
